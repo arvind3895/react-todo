@@ -4,11 +4,28 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "antd/dist/antd.css";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import todo from "./reducers";
+
+const saveStoreToLocal = (state) => {
+  try {
+    let data = state;
+    const serialize = JSON.stringify(data);
+    sessionStorage.setItem("store", serialize);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const store = createStore(todo);
+
+store.subscribe(() => saveStoreToLocal(store.getState()));
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("root")
 );
 
