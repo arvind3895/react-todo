@@ -21,7 +21,6 @@ const todo = (state = initialState, action) => {
   let task, user;
   switch (action.type) {
     case TOOGLE_LOGIN:
-      console.log(state);
       if (!state.login) {
         return { login: true };
       } else {
@@ -40,8 +39,6 @@ const todo = (state = initialState, action) => {
       task = { ...action.task };
       task.dateAdded = action.task.dateAdded.format("DD/MM/YYYY");
       task.visible = false;
-      console.log(task, "task", action.index);
-
       return Object.assign({}, state, {
         todos: [
           ...state.todos.slice(0, action.index),
@@ -61,7 +58,6 @@ const todo = (state = initialState, action) => {
       });
     case ADD_TODO:
       let todo = { ...action.task };
-      todo.date = action.task.dateAdded;
       todo.dateAdded = action.task.dateAdded.format("DD/MM/YYYY");
       todo.visible = false;
       if (state.todos) {

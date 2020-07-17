@@ -15,6 +15,7 @@ export default class GenericModal extends Component {
       <div>
         <Button onClick={this.showModal} type={this.props.buttonType}>
           {this.props.buttonTitle}
+          {this.props.icon ? this.props.icon : ""}
         </Button>
         <Modal
           title={this.props.modalData.title}
