@@ -7,7 +7,7 @@ import { Layout } from "antd";
 import { connect } from "react-redux";
 import TabsContainer from "./components/TabsContainer/TabsContainer";
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 class App extends Component {
   render() {
