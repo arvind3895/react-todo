@@ -26,6 +26,11 @@ const TaskTable = (props) => {
       key: "dateAdded",
     },
     {
+      title: "Last Date",
+      render: (record) => record.lastDate,
+      key: "dateAdded",
+    },
+    {
       title: "Action",
       key: "action",
       render: (text, record, index) => (
@@ -72,8 +77,10 @@ const TaskTable = (props) => {
         />
       </GenericModal>
       <Table
+        scroll={{ x: true }}
         columns={columns}
         dataSource={props.todos}
+        rowKey="dateAdded"
         style={{
           marginTop: 10,
         }}

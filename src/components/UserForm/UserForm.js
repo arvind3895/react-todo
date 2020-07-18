@@ -14,6 +14,7 @@ export const UserForm = ({ initialValue, submit, index, updateVisible }) => {
         setLoading(true);
         setTimeout(() => {
           setLoading(false);
+          form.resetFields();
           index >= 0 ? submit(values, index) : submit(values);
         }, 2000);
       }}

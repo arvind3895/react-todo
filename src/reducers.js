@@ -37,12 +37,12 @@ const todo = (state = initialState, action) => {
       });
     case EDIT_TODO:
       task = { ...action.task };
-      task.dateAdded = action.task.dateAdded.format("DD/MM/YYYY");
+      task.lastDate = action.task.lastDate.format("DD/MM/YYYY");
       task.visible = false;
       return Object.assign({}, state, {
         todos: [
           ...state.todos.slice(0, action.index),
-          task,
+          { ...state.todos[action.index], ...task },
           ...state.todos.slice(action.index + 1),
         ],
       });
@@ -58,8 +58,9 @@ const todo = (state = initialState, action) => {
       });
     case ADD_TODO:
       let todo = { ...action.task };
-      todo.dateAdded = action.task.dateAdded.format("DD/MM/YYYY");
+      todo.lastDate = action.task.lastDate.format("DD/MM/YYYY");
       todo.visible = false;
+      todo.dateAdded = new Date().toLocaleString();
       if (state.todos) {
         return Object.assign({}, state, {
           todos: [...state.todos, todo],

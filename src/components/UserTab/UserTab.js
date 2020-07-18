@@ -72,11 +72,13 @@ const UserTable = (props) => {
         visible={addPopUpVisible}
         updateVisible={(value) => setAddPopUpVisible(value)}
       >
-        <UserForm submit={onAddUser} />
+        <UserForm submit={onAddUser} updateVisible={setAddPopUpVisible} />
       </GenericModal>
       <Table
+        scroll={{ x: true }}
         columns={columns}
         dataSource={props.users}
+        rowKey="email"
         style={{
           marginTop: 10,
         }}

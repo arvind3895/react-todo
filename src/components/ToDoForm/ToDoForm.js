@@ -10,8 +10,8 @@ export const ToDoForm = ({ initialValue, submit, index, updateVisible }) => {
       form={form}
       name="basic"
       initialValues={{
-        dateAdded: initialValue?.dateAdded
-          ? moment(initialValue?.dateAdded, "DD-MM-YYYY")
+        lastDate: initialValue?.lastDate
+          ? moment(initialValue?.lastDate, "DD-MM-YYYY")
           : "",
         task: initialValue?.task,
       }}
@@ -26,8 +26,8 @@ export const ToDoForm = ({ initialValue, submit, index, updateVisible }) => {
       {...formItemLayout}
     >
       <Form.Item
-        name="dateAdded"
-        label="DatePicker"
+        name="lastDate"
+        label="Last Date"
         rules={[
           {
             required: true,
@@ -35,7 +35,13 @@ export const ToDoForm = ({ initialValue, submit, index, updateVisible }) => {
           },
         ]}
       >
-        <DatePicker placeholder="Select Date" format="DD/MM/YYYY" />
+        <DatePicker
+          placeholder="Select Date"
+          format="DD/MM/YYYY"
+          disabledDate={(d) =>
+            !d || d.isSameOrBefore(moment().subtract(1, "day"))
+          }
+        />
       </Form.Item>
       <Form.Item
         label="Task"
